@@ -1,3 +1,45 @@
+// ===== THEME TOGGLE =====
+function toggleTheme(themeName) {
+  const isLight = document.body.classList.toggle('light-mode');
+  const darkIcon = document.querySelector('.theme-icon-dark');
+  const lightIcon = document.querySelector('.theme-icon-light');
+  const darkLogo = document.querySelector('.nav-logo-dark');
+  const lightLogo = document.querySelector('.nav-logo-light');
+  
+  if (isLight) {
+    darkIcon.style.display = 'none';
+    lightIcon.style.display = 'block';
+    darkLogo.style.display = 'none';
+    lightLogo.style.display = 'block';
+  } else {
+    darkIcon.style.display = 'block';
+    lightIcon.style.display = 'none';
+    darkLogo.style.display = 'block';
+    lightLogo.style.display = 'none';
+  }
+  
+  localStorage.setItem('solmonetaire-theme', isLight ? 'light' : 'dark');
+}
+
+function initTheme() {
+  const saved = localStorage.getItem('solmonetaire-theme');
+  if (saved === 'light') {
+    document.body.classList.add('light-mode');
+    const darkIcon = document.querySelector('.theme-icon-dark');
+    const lightIcon = document.querySelector('.theme-icon-light');
+    const darkLogo = document.querySelector('.nav-logo-dark');
+    const lightLogo = document.querySelector('.nav-logo-light');
+    if (darkIcon && lightIcon && darkLogo && lightLogo) {
+      darkIcon.style.display = 'none';
+      lightIcon.style.display = 'block';
+      darkLogo.style.display = 'none';
+      lightLogo.style.display = 'block';
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initTheme);
+
 // ===== LANGUAGE TOGGLE =====
 function setLang(lang) {
   document.body.className = lang;
